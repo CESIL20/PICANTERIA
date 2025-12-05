@@ -1,0 +1,2536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Picantería</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="cache-control" content="max-age=300">
+  <meta http-equiv="expires" content="0">
+  <link rel="canonical" href="https://picanteriasdelperu.com">
+  <meta name="description" content="Descubre La Picantería: gastronomía peruana auténtica con pescados frescos, tradición y sabor en cada plato.">
+  <meta name="keywords" content="picantería, comida peruana, ceviche, gastronomía peruana, restaurante en Lima">
+  <meta name="author" content="La Picantería">
+  <meta name="rating" content="General">
+  <meta name="language" content="es">
+  <meta name="copyright" content="La Picantería">
+  <meta property="og:title" content="La Picantería">
+  <meta property="og:description" content="Tradición y sabor peruano en cada plato. Ven y vive la experiencia gastronómica única.">
+  <meta property="og:image" content="https://picanteriasdelperu.com/img/pikalogo.png">
+  <meta property="og:url" content="https://picanteriasdelperu.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="La Picantería">
+  <meta name="twitter:description" content="Descubre lo mejor de la gastronomía peruana en La Picantería.">
+  <meta name="twitter:image" content="https://picanteriasdelperu.com/img/pikalogo.png">
+  <link rel="icon" href="img/pikalogo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css">
+  <style>
+    :root {
+      --primary: #8B7355;
+      --secondary: #A0826D;
+      --accent: #C9A86A;
+      --dark: #1C1917;
+      --dark-secondary: #292524;
+      --light: #F5F5F4;
+      --text-muted: #A8A29E;
+      --gradient-elegant: linear-gradient(135deg, #8B7355 0%, #A0826D 100%);
+      --gradient-subtle: linear-gradient(135deg, #292524 0%, #1C1917 100%);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 100px;
+    }
+    body.banner-active {
+      overflow: hidden;
+      height: 100vh;
+      padding-top: 0;
+    }
+    .lang-es, .lang-en { display: none; }
+    body.lang-active-es .lang-es { display: block; }
+    body.lang-active-es .lang-es.inline-content { display: inline; }
+    body.lang-active-en .lang-en { display: block; }
+    body.lang-active-en .lang-en.inline-content { display: inline; }
+    .modern-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(28, 25, 23, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      border-bottom: 1px solid rgba(139, 115, 85, 0.2);
+    }
+    .modern-header.scrolled {
+      background: rgba(28, 25, 23, 0.98);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+    .header-content {
+      max-width: 1330px;
+      margin: 0 auto;
+      padding: 0 ;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.7rem;
+      font-weight: 200;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .logo img {
+      width: 130px;
+      height: 100px;
+      border-radius: 0;
+      border: 0 solid var(--primary);
+    }
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-menu a {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-menu a:hover {
+      color: var(--primary);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    /* MENSAJE DE RESERVA CENTRADO */
+    .reservation-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      padding: 1.2rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      max-width: 90%;
+      text-align: center;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .reservation-message.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .hero {
+      max-width: 1330px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-subtle);
+      opacity: 0.3;
+    }
+    .hero-content {
+      min-height: 90vh;
+      margin: 0 auto;
+      padding: 0;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-title {
+      font-size: clamp(1.5rem, 4vw, 5rem);
+      font-weight: 800;
+      margin-bottom: 2rem;
+      text-align: center;
+      background: var(--gradient-elegant);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero-text {
+      position: relative;
+      width: 1330px;
+      height: 600px;
+      padding: 0.5rem;
+      border-radius: 5px;
+      background: rgba(17, 17, 17, 0.185);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(19, 18, 17, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hero-text::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('img/mesa.jpg') center/cover;
+      z-index: -1;
+      border-radius: 5px;
+    }
+    .hero-text p {
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: var(--gradient-elegant);
+      color: white;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .hero-carousel {
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    .carousel-container {
+      position: relative;
+      max-width: 1330px;
+      height: 600px;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s ease;
+      height: 100%;
+    }
+    .carousel-item {
+      flex-shrink: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .carousel-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .carousel-dot.active {
+      background: var(--primary);
+      width: 30px;
+      border-radius: 5px;
+    }
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(139, 115, 85, 0.3);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      z-index: 10;
+    }
+    .carousel-prev { left: 20px; }
+    .carousel-next { right: 20px; }
+    section {
+      padding: 0 ;
+      max-width: 1330px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: var(--gradient-elegant);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .history-section {
+      background: var(--dark-secondary);
+      background: url('picanteria_artistica.png') center/cover no-repeat;
+      border-radius: 5px;
+      padding: 3rem;
+      margin: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .history-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 5px;
+      z-index: 0;
+    }
+    .history-section p {
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      text-align: justify;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 2rem; /* Reducido de 3rem a 2rem */
+    }
+    .contact-card {
+      background: var(--dark-secondary);
+      border-radius: 5px;
+      padding: 2rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .contact-item i {
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    .map-container {
+      border-radius: 5px;
+      overflow: hidden;
+      height: 400px;
+      position: relative;
+      background-color: #f0f0f0;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .map-fallback {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #f0f0f0;
+      color: #333;
+      padding: 1rem;
+      text-align: center;
+    }
+    .map-fallback i {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .map-fallback a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    .map-fallback a:hover {
+      text-decoration: underline;
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .social-icon:hover {
+      background: var(--primary);
+      color: white;
+    }
+    .footer {
+      background: var(--dark-secondary);
+      padding: 3rem 2rem;
+      margin-top: 2rem; /* Reducido de 4rem a 2rem */
+    }
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .footer-section h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .footer-section p, .footer-section a {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(139, 115, 85, 0.1);
+      color: var(--text-muted);
+    }
+    /* ======== BOTÓN WHATSAPP CON EFECTO VERDE ======== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      animation: whatsapp-blink 1.5s infinite;
+      border: none;
+      outline: none;
+    }
+    .whatsapp-float i {
+      color: white;
+      font-size: 30px;
+    }
+    @keyframes whatsapp-blink {
+      0% { box-shadow: 0 0 5px #25d366, 0 0 10px #25d366; }
+      50% { box-shadow: 0 0 20px #25d366, 0 0 40px #25d366; }
+      100% { box-shadow: 0 0 5px #25d366, 0 0 10px #25d366; }
+    }
+    /* ======== MODAL DE CHAT WHATSAPP ======== */
+    .whatsapp-chat-modal {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      width: 280px;
+      max-width: 90vw;
+      z-index: 9998;
+      display: none;
+      flex-direction: column;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .whatsapp-chat-modal.show {
+      display: flex;
+    }
+    .chat-header {
+      background: #25d366;
+      color: white;
+      padding: 12px 16px;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .chat-close {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0;
+    }
+    .chat-body {
+      padding: 16px;
+    }
+    .message {
+      background: #0707077a;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border-bottom-left-radius: 0;
+      max-width: 80%;
+      word-wrap: break-word;
+      line-height: 1.4;
+    }
+    .chat-footer {
+      padding: 12px 16px;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: center;
+    }
+    .chat-btn {
+      background: #25d366;
+      color: white;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.3s;
+    }
+    .chat-btn:hover {
+      background: #1eaf5c;
+    }
+    /* ======== MODAL DEL CARRUSEL GRANDE CON BOTONES VISIBLES ======== */
+    .carousel-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    .carousel-modal.show {
+      display: flex;
+    }
+    .carousel-modal-content {
+      max-width: 90vw;
+      max-height: 85vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+      z-index: 10002;
+    }
+    .carousel-modal-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+      z-index: 10003;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    }
+    .carousel-modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 10003;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      transition: all 0.3s ease;
+    }
+    .carousel-modal-nav:hover {
+      background: rgba(139, 115, 85, 0.8);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .carousel-modal-prev { left: 30px; }
+    .carousel-modal-next { right: 30px; }
+    
+    /* ======== ESTILOS BANNER NAVIDEÑO ======== */
+    .banner-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.5s ease-in;
+    }
+    .banner-overlay.hidden { display: none; }
+    .overlay-close {
+      position: absolute;
+      top:0;
+      right: 5px;
+      font-size: 1.3em;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .overlay-close:hover { color: #ff4d4d; }
+    .banner-overlay-content {
+      background: linear-gradient(135deg, #0c0c0c86, #1414148c);
+      padding: 1rem;
+      border-radius: 5px;
+      max-width: 500px;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      overflow: hidden;
+    }
+    .new-badge {
+      background: #33323273;
+      color: #fff;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 5px;
+      position: absolute;
+      top: 15px; left: 15px;
+      font-size: 0.9rem;
+    }
+   
+    .banner-logo {
+      width: 180px;
+      margin: 0 auto 1rem auto;
+      border-radius: 12px;
+    }
+    .banner-title {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .banner-subtitle {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .banner-cta-overlay {
+      background: #f7f4f4e3;
+      border: none;
+      color: #0f0f0f;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 10px 25px;
+      border-radius: 25px;
+      transition: 0.3s;
+    }
+    .banner-cta-overlay:hover {
+      background: #5c5c5c;
+      transform: scale(1.05);
+    }
+    .catalog-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 10001;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-close-catalog {
+      position: absolute;
+      top: 15px;
+      right: 29px;
+      font-size: 1.8rem;
+      color: #fcfcfc;
+      cursor: pointer;
+      z-index: 10002;
+  }
+
+    .catalog-modal.show { display: flex; }
+    .modal-content-catalog {
+      background: #fff;
+      border-radius: 5px;
+      padding: 0;
+      max-width: 95%;
+      width: 1400px;
+      height: 100%;
+      position: relative;
+      animation: fadeIn 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .catalog-header {
+      background: var(--primary);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .catalog-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    .catalog-pdf-viewer {
+      flex-grow: 1;
+      min-height: 0;
+      position: relative;
+      width: 1400px;
+      height: 100%;
+    }
+    .catalog-pdf-viewer iframe {
+      width: 1400px;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .modal-close-catalog {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      color: white;
+      cursor: pointer;
+      z-index: 10003;
+      background: rgba(0,0,0,0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-close-catalog:hover {
+      background: rgba(0,0,0,0.8);
+    }
+
+    .catalog-cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 15px;
+      background: #f5f5f5;
+      border-top: 1px solid #eee;
+    }
+    .catalog-btn {
+      text-align: center;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-whatsapp { background: #25D366; color: white; }
+    .btn-download { background: #4285F4; color: white; }
+    
+    /* === BOTÓN VER CARTA COMPLETA === */
+    .btn-menu-completo { 
+        background: var(--light); 
+        color: var(--dark-secondary); 
+        border: 1px solid var(--text-muted); 
+    }
+    .btn-menu-completo:hover {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+    }
+    /* === FIN NUEVO ESTILO === */
+
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes floatIcons { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+    
+    /* ======== MEDIAS QUERIES PARA RESPONSIVIDAD ======== */
+    
+    /* 1. Breakpoint para tablets y móviles (Max-width: 769px) */
+    @media (max-width: 769px) {
+      /* Encabezado y Navegación */
+      .hamburger { display: flex; }
+      .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        background: rgba(28, 25, 23, 0.98);
+        flex-direction: column;
+        padding: 2rem;
+        transition: left 0.3s ease;
+      }
+      .nav-menu.active { left: 0; }
+      /* Hero y Grids principales */
+      .hero-grid, .theme-grid, .contact-grid { 
+        grid-template-columns: 1fr; /* Columna única */
+      }
+      /* Reducir el gap entre hero y carrusel en móviles */
+      .hero-grid { 
+        gap: 1.5rem; /* Reducido de 3rem a 1.5rem */
+      }
+      .hero-text { 
+        height: auto; 
+        min-height: 300px; 
+        padding: 1.5rem; 
+        width: 100%;
+        max-width: 100%;
+      }
+      .hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+      .hero-text p { font-size: 1rem; }
+      .preparation-grid { grid-template-columns: 1fr; }
+      .carousel-container { height: 300px; }
+      .contact-grid { 
+        gap: 2rem; 
+        margin-top: 1.5rem; /* Reducido para móviles */
+      }
+      .history-section { 
+        padding: 2rem; 
+        margin-top: 3rem; /* Añadido margen superior para separar del carrusel */
+      }
+      /* Footer optimizado para móviles */
+      .footer {
+        margin-top: 1.5rem; /* Reducido para móviles */
+        padding: 2rem 1rem; /* Reducido padding */
+      }
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+        gap: 1.5rem; /* Reducido gap */
+      }
+      .footer-section {
+        margin-bottom: 1rem; /* Reducido margin-bottom */
+      }
+      .footer-section h3 {
+        font-size: 1.1rem; /* Tamaño de fuente reducido */
+        margin-bottom: 0.8rem; /* Reducido margin-bottom */
+      }
+      .footer-section p, .footer-section a {
+        font-size: 0.9rem; /* Texto más pequeño */
+        margin-bottom: 0.3rem; /* Reducido margin-bottom */
+      }
+      .footer-bottom {
+        margin-top: 1.5rem; /* Reducido margin-top */
+        padding-top: 1rem; /* Reducido padding-top */
+        font-size: 0.85rem; /* Texto más pequeño */
+      }
+      /* Modales */
+      .modal-content-catalog { 
+        max-width: 98vw; 
+        width: 98%; 
+        height: 95%; 
+        padding: 0; 
+      }
+      .video-modal-content { width: 95%; }
+      .carousel-modal-content {
+        max-width: 95vw;
+        max-height: 80vh;
+      }
+      .carousel-modal-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+      .carousel-modal-prev { left: 15px; }
+      .carousel-modal-next { right: 15px; }
+      .carousel-modal-close {
+        top: 15px;
+        right: 15px;
+        font-size: 30px;
+      }
+      /* Botones */
+      .btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.95rem;
+      }
+      .cta-buttons {
+        justify-content: center;
+      }
+      /* Banner */
+      .banner-overlay-content {
+        max-width: 90%;
+        padding: 1.5rem;
+      }
+      .banner-title {
+        font-size: 1.6rem;
+      }
+      .banner-subtitle {
+        font-size: 0.95rem;
+      }
+      /* Logo */
+      .logo img {
+        width: 110px;
+        height: 85px;
+      }
+      /* Mapa */
+      .map-container {
+        height: 300px;
+      }
+    }
+    
+      /* 2. Breakpoint para Móviles Grandes (Max-width: 480px) */
+    @media (max-width: 480px) {
+      /* Tipografía y Espaciado */
+      body { padding-top: 80px; }
+      .header-content { padding: 0.8rem 1rem; }
+      .logo img { width: 100px; height: 75px; }
+      .section-title { margin-bottom: 2rem; }
+      /* Hero */
+      .hero-content { padding: 1rem; }
+      .hero-title { font-size: 2rem; margin-bottom: 1.5rem; }
+      .btn { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
+      .carousel-container { height: 250px; }
+      /* Reducir aún más el gap en móviles pequeños */
+      .hero-grid { 
+        gap: 1rem; /* Reducido de 1.5rem a 1rem */
+      }
+      /* Añadir más separación entre carrusel y sección historia */
+      .history-section { 
+        margin-top: 2.5rem; /* Reducido pero manteniendo separación */
+      }
+      /* Reducir márgenes en contacto y footer */
+      .contact-grid { 
+        margin-top: 1rem; /* Más reducido para móviles pequeños */
+      }
+      .footer {
+        margin-top: 1rem; /* Más reducido para móviles pequeños */
+        padding: 1.5rem 1rem; /* Padding más reducido */
+      }
+      /* Footer más compacto */
+      .footer-content {
+        grid-template-columns: 1fr; /* Columna única en móviles pequeños */
+        gap: 1rem; /* Gap más pequeño */
+      }
+      .footer-section {
+        margin-bottom: 0.8rem; /* Margin-bottom más pequeño */
+      }
+      .footer-section h3 {
+        font-size: 1rem; /* Tamaño de fuente más pequeño */
+        margin-bottom: 0.6rem; /* Margin-bottom más pequeño */
+      }
+      .footer-section p, .footer-section a {
+        font-size: 0.85rem; /* Texto más pequeño */
+        margin-bottom: 0.25rem; /* Margin-bottom más pequeño */
+      }
+      .footer-bottom {
+        margin-top: 1rem; /* Margin-top más pequeño */
+        padding-top: 0.8rem; /* Padding-top más pequeño */
+        font-size: 0.8rem; /* Texto más pequeño */
+      }
+      /* Banner */
+      .banner-title { font-size: 1.4rem; }
+      .banner-subtitle { font-size: 0.9rem; padding: 0 0.5rem; }
+      .banner-logo { width: 140px; }
+      .overlay-close { top: 8px; right: 8px; font-size: 1.3em; }
+      /* Contacto y Pie */
+      .map-container { height: 250px; }
+      
+      /* Catálogo Modal: SOLUCIÓN */
+      .catalog-cta-buttons { 
+        justify-content: center; 
+        flex-direction: column; /* Apila los botones */
+        align-items: center; /* Centra los botones apilados */
+      }
+      .catalog-btn { 
+        width: 100%; /* Ocupa el 90% del ancho */
+        max-width: 350px; /* Máximo ancho para que no se vea gigante en tablets */
+        margin: 5px 0; /* Añade espacio vertical entre botones */
+        font-size: 0.9rem; 
+        flex: none; /* EVITA QUE SE ESTIRE */
+      }
+      /* Carrusel modal */
+      .carousel-modal-content {
+        max-width: 95vw;
+        max-height: 75vh;
+      }
+      .carousel-modal-nav {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+      }
+      .carousel-modal-prev { left: 10px; }
+      .carousel-modal-next { right: 10px; }
+      .carousel-modal-close {
+        top: 10px;
+        right: 10px;
+        font-size: 28px;
+      }
+      /* Botón WhatsApp */
+      .whatsapp-float {
+        width: 55px;
+        height: 55px;
+      }
+      .whatsapp-float i {
+        font-size: 26px;
+      }
+      /* Chat modal */
+      .whatsapp-chat-modal {
+        width: 90%;
+        max-width: 280px;
+      }
+      /* Mapa */
+      .map-container {
+        height: 220px;
+      }
+      .map-fallback {
+        padding: 0.8rem;
+      }
+      .map-fallback i {
+        font-size: 2.5rem;
+      }
+    }
+    
+    /* 3. Breakpoint para Móviles Pequeños (Max-width: 375px) */
+    @media (max-width: 375px) {
+      /* Botones de CTA */
+      .cta-buttons { 
+        flex-direction: column; 
+        gap: 0.8rem;
+      }
+      .btn { 
+        width: 100%; 
+        text-align: center; 
+      }
+      /* Carrusel */
+      .carousel-container { height: 200px; }
+      /* Reducir al mínimo el gap en móviles muy pequeños */
+      .hero-grid { 
+        gap: 0.5rem; /* Reducido de 1rem a 0.5rem */
+      }
+      /* Mantener separación entre carrusel y sección historia */
+      .history-section { 
+        margin-top: 2rem; /* Reducido pero manteniendo separación */
+      }
+      /* Reducir aún más márgenes en móviles muy pequeños */
+      .contact-grid { 
+        margin-top: 0.5rem; /* Mínimo para móviles muy pequeños */
+      }
+      .footer {
+        margin-top: 0.5rem; /* Mínimo para móviles muy pequeños */
+        padding: 1rem 0.8rem; /* Padding mínimo */
+      }
+      /* Footer ultra compacto */
+      .footer-content {
+        gap: 0.8rem; /* Gap mínimo */
+      }
+      .footer-section {
+        margin-bottom: 0.6rem; /* Margin-bottom mínimo */
+      }
+      .footer-section h3 {
+        font-size: 0.95rem; /* Tamaño de fuente mínimo */
+        margin-bottom: 0.5rem; /* Margin-bottom mínimo */
+      }
+      .footer-section p, .footer-section a {
+        font-size: 0.8rem; /* Texto más pequeño */
+        margin-bottom: 0.2rem; /* Margin-bottom mínimo */
+      }
+      .footer-bottom {
+        margin-top: 0.8rem; /* Margin-top mínimo */
+        padding-top: 0.6rem; /* Padding-top mínimo */
+        font-size: 0.75rem; /* Texto más pequeño */
+      }
+      /* Banner más pequeño */
+      .banner-title { font-size: 1.3rem; }
+      .banner-subtitle { font-size: 0.85rem; padding: 0 0.4rem; }
+      .banner-logo { width: 120px; }
+      .overlay-close { top: 0; right: 4px; font-size: 1.25em; }
+      /* Carrusel modal */
+      .carousel-modal-content {
+        max-width: 95vw;
+        max-height: 70vh;
+      }
+      .carousel-modal-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+      .carousel-modal-prev { left: 5px; }
+      .carousel-modal-next { right: 5px; }
+      .carousel-modal-close {
+        top: 5px;
+        right: 5px;
+        font-size: 24px;
+      }
+      /* Botón WhatsApp */
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+      }
+      .whatsapp-float i {
+        font-size: 24px;
+      }
+      /* Chat modal */
+      .whatsapp-chat-modal {
+        width: 95%;
+        max-width: 250px;
+      }
+      /* Mapa */
+      .map-container {
+        height: 200px;
+      }
+      .map-fallback {
+        padding: 0.5rem;
+      }
+      .map-fallback i {
+        font-size: 2rem;
+      }
+      .map-fallback p {
+        font-size: 0.9rem;
+      }
+    }
+    /* ======== FIN MEDIAS QUERIES ======== */
+
+
+    /* ======== SELECTOR DE IDIOMA ======== */
+    .language-toggle {
+      display: flex;
+      gap: 0.3rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.3rem;
+      border-radius: 50px;
+      align-items: center;
+    }
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      background: transparent;
+      border: none;
+      color: var(--light);
+      padding: 0.5rem 0.8rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .lang-btn.active {
+      background: var(--primary);
+      color: white;
+    }
+    .lang-btn .fi {
+      width: 20px;
+      height: 15px;
+      border-radius: 2px;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+    /* ======== MODAL DE VIDEO ======== */
+.video-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.video-modal.show {
+  display: flex;
+}
+
+.modal-content-video {
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 800px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.modal-close-video {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 32px;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.video-container video {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+}
+.btn-back {
+  background-color: #165e3f;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: #0f422c;
+}
+
+.video-back-container {
+  text-align: center;
+  margin-top: 20px;
+}
+.section-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 3rem;
+      background: var(--gradient-elegant);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    section {
+      max-width: 1330px;
+      margin: 4rem auto;
+    }
+    
+    /* === SECCIÓN EXPERIENCIA === */
+    .experience-section {
+      background: var(--dark-secondary);
+      border-radius: 5px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+    
+    .experience-intro {
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+    
+    .review-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .review-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 5px;
+      padding: 2rem;
+      border: 1px solid rgba(139, 115, 85, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(139, 115, 85, 0.3);
+    }
+    
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .review-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gradient-elegant);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+    }
+    
+    .review-info h4 {
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    
+    .review-stars {
+      color: #FFD700;
+      font-size: 0.9rem;
+    }
+    
+    .review-text {
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    
+    .review-platform {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+    
+    .cta-review {
+      text-align: center;
+    }
+    
+    .btn-review {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 2.5rem;
+      background: var(--gradient-elegant);
+      color: white;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    
+    .btn-review:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(139, 115, 85, 0.4);
+    }
+    
+    /* === SECCIÓN TRABAJA CON NOSOTROS === */
+    .careers-section {
+      background: var(--dark-secondary);
+      border-radius: 5px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+    
+    .careers-intro {
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+    
+    .careers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .career-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 5px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid rgba(139, 115, 85, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .career-card:hover {
+      background: rgba(139, 115, 85, 0.1);
+      transform: translateY(-5px);
+    }
+    
+    .career-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: var(--gradient-elegant);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: white;
+    }
+    
+    .career-card h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    .career-card p {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    .careers-form {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 5px;
+      padding: 2.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(139, 115, 85, 0.3);
+      border-radius: 5px;
+      color: var(--light);
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    .form-group select {
+      cursor: pointer;
+    }
+    
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-muted);
+    }
+    
+    .btn-submit {
+      width: 100%;
+      padding: 1rem 2rem;
+      background: var(--gradient-elegant);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-submit:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(139, 115, 85, 0.4);
+    }
+    
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .form-message {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 5px;
+      text-align: center;
+      display: none;
+    }
+    
+    .form-message.success {
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      color: #86efac;
+    }
+    
+    .form-message.error {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #fca5a5;
+    }
+    
+    /* === RESPONSIVE === */
+    @media (max-width: 769px) {
+      .experience-section,
+      .careers-section {
+        padding: 2rem;
+      }
+      
+      .review-cards,
+      .careers-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .careers-form {
+        padding: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .section-title {
+        margin-bottom: 2rem;
+      }
+      
+      .experience-intro,
+      .careers-intro {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .btn-review,
+      .btn-submit {
+        padding: 0.9rem 1.8rem;
+      }
+      
+      .career-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="lang-active-es banner-active">
+  <div class="banner-overlay" id="bannerOverlay">
+    <div class="banner-overlay-content">
+      <span class="overlay-close" id="closeOverlay">×</span>
+      <div class="christmas-banner">
+        <div class="new-badge">
+          <span class="lang-es inline-content">¡NUEVO!</span>
+          <span class="lang-en inline-content">NEW!</span>
+        </div>
+        
+        <div class="banner-content">
+          <img src="img/pikalogo.png" alt="La Picantería Logo" class="banner-logo" onerror="this.src='https://placehold.co/200x140/165e3f/ffffff?text=La+Picanteria'">
+          <div class="banner-text">
+            <h2 class="banner-title">
+              <span class="lang-es inline-content"> CENA NAVIDEÑA 2025 </span>
+              <span class="lang-en inline-content"> CHRISTMAS DINNER 2025 </span>
+            </h2>
+            <p class="banner-subtitle">
+              <span class="lang-es inline-content">Celebra esta Navidad con los sabores del Perú</span>
+              <span class="lang-en inline-content">Celebrate this Christmas with the flavors of Peru</span>
+            </p>
+            <button class="banner-cta-overlay" id="viewCatalogBtn">
+              <i class="fas fa-book-open"></i>
+              <span class="lang-es inline-content">Ver Catálogo Navideño</span>
+              <span class="lang-en inline-content">View Christmas Catalog</span>
+            </button>
+          </div>
+          <br>
+          <p class="banner-subtitle">
+            <span class="lang-es inline-content">La Navidad se vive mejor alrededor de una buena mesa.<br>Descubre nuestros exclusivos ambientes diseñados para cada ocasión.</span>
+            <span class="lang-en inline-content">Christmas is best enjoyed around a good table.<br>Discover our exclusive environments designed for every occasion.</span>
+          </p>
+          <button class="banner-cta-overlay" id="viewGalleryBtn">
+            <i class="fas fa-video"></i>
+            <span class="lang-es inline-content">Ver Ambientes</span>
+            <span class="lang-en inline-content">View Venues</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="video-modal" id="videoModal">
+  <div class="modal-content-video">
+    <span class="modal-close-video" id="closeVideo">×</span>
+    <div class="video-container">
+      <video id="localVideo" width="100%" controls autoplay muted playsinline>
+        <source src="video/video_ambientes.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+      </video>
+    </div>
+  </div>
+</div>
+
+  <header class="modern-header">
+    <div class="header-content">
+      <a href="#" class="logo">
+        <img src="img/pikalogo.png" alt="La Picantería" onerror="this.src='https://placehold.co/60x60/8B7355/FFFFFF?text=LP'">
+      </a>
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#hero"><span class="lang-es inline-content">Inicio</span><span class="lang-en inline-content">Home</span></a></li>
+          <li><a href="#history"><span class="lang-es inline-content">Historia</span><span class="lang-en inline-content">History</span></a></li>
+          <li><a href="CARTA PICANTERIA.pdf" target="_blank" rel="noopener noreferrer"><span class="lang-es inline-content">Carta</span><span class="lang-en inline-content">Menu</span></a></li>
+          <li><a href="#" id="navCatalogBtn"><span class="lang-es inline-content">Catálogo Navideño</span><span class="lang-en inline-content">Christmas Catalog</span></a></li>
+          <li><a href="#" id="navVideoBtn"><span class="lang-es inline-content">Ambientes</span><span class="lang-en inline-content">Venues</span></a></li>
+          <li><a href="#contact"><span class="lang-es inline-content">Contacto</span><span class="lang-en inline-content">Contact</span></a></li>
+        </ul>
+      </nav>
+      <div class="language-toggle">
+        <button class="lang-btn active" data-lang="es">
+          <span class="fi fi-es"></span> ES
+        </button>
+        <button class="lang-btn" data-lang="en">
+          <span class="fi fi-gb"></span> EN
+        </button>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <div class="reservation-message" id="reservationMessage">
+    <i class="fas fa-info-circle"></i>
+    <span class="lang-es inline-content">No contamos con reserva, todo es por orden de llegada.</span>
+    <span class="lang-en inline-content">We do not take reservations; it's all first-come, first-served.</span>
+  </div>
+
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="lang-es inline-content">El Perú servido en su mesa</span>
+        <span class="lang-en inline-content">Peru served at your table</span>
+      </h1>
+      <div class="hero-grid">
+        <div class="hero-text">
+          <p>
+            <span class="lang-es inline-content"><strong>Bienvenidos a La Picantería</strong>, siéntese a la mesa. Aquí todo empieza!!..</span>
+            <span class="lang-en inline-content">Welcome to La Picantería. Take a seat. This is where everything begins.</span>
+          </p>
+          <div class="cta-buttons">
+            <a href="CARTA PICANTERIA.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <i class="fas fa-file-pdf"></i>
+              <span class="lang-es inline-content">Ver Carta</span>
+              <span class="lang-en inline-content">View Menu</span>
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <span class="lang-es inline-content">Contáctanos</span>
+              <span class="lang-en inline-content">Contact Us</span>
+            </a>
+          </div>
+        </div>
+        <br>
+        <div class="hero-carousel">
+          <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack"></div>
+            <button class="carousel-button carousel-prev" id="prevBtn">‹</button>
+            <button class="carousel-button carousel-next" id="nextBtn">›</button>
+            <div class="carousel-controls" id="carouselDots"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="carouselModal" class="carousel-modal">
+    <span class="carousel-modal-close" id="carouselModalClose">×</span>
+    <button class="carousel-modal-nav carousel-modal-prev" id="modalPrevBtn">‹</button>
+    <button class="carousel-modal-nav carousel-modal-next" id="modalNextBtn">›</button>
+    <img class="carousel-modal-content" id="carouselModalImage">
+  </div>
+
+  <section id="history">
+    <h2 class="section-title">
+      <span class="lang-es inline-content">Nuestra Historia</span>
+      <span class="lang-en inline-content">Our History</span>
+    </h2>
+    <div class="history-section">
+      <p><span class="lang-es">En La Picantería creemos que la buena mesa es un acto de memoria y de celebración. Aquí no solo se viene a comer: se viene a encontrarse con el Perú.</span><span class="lang-en">At La Picantería, we believe that a good meal is an act of memory and celebration. Here, you don't just come to eat: you come to discover Peru.</span></p>
+      <p><span class="lang-es">Nacimos inspirados en las antiguas picanterías del norte y del sur, esos lugares donde la cocina se compartía en grandes mesas y el sabor unía a familias enteras. Hoy, desde Lima, mantenemos vivo ese espíritu, combinando tradición y modernidad en cada plato que servimos.</span><span class="lang-en">We were born inspired by the traditional picanterías of the north and south, those places where food was shared at large tables and flavors brought entire families together. Today, from Lima, we keep that spirit alive, combining tradition and modernity in every dish we serve.</span></p>
+      <p><span class="lang-es">Cada mañana, nuestros pescadores nos traen el mar fresco; los agricultores, la riqueza de nuestra tierra; y nuestro equipo, con respeto y pasión, transforma esos productos en experiencias llenas de historia y orgullo.</span><span class="lang-en">Every morning, our fishermen bring us the fresh sea; farmers, the richness of our land; and our team, with respect and passion, transforms these ingredients into experiences full of history and pride.</span></p>
+      <p><span class="lang-es">En nuestras mesas, todo se comparte: el cebiche recién hecho, los guisos, los sudados, los asados y la parrilla. Sabores intensos y honestos, nacidos del fuego y de la paciencia, que nos recuerdan quiénes somos y de dónde venimos.</span><span class="lang-en">At our tables, everything is shared: freshly made ceviche, stews, broths, roasts, and grilled dishes. Intense and honest flavors, born from fire and patience, that remind us who we are and where we come from.</span></p>
+      <p><span class="lang-es">La Picantería es un homenaje al Perú. Un punto de encuentro para amigos, familias, viajeros y amantes de la buena cocina que buscan autenticidad, cariño y tradición servidos con orgullo.</span><span class="lang-en">La Picantería is a tribute to Peru. A meeting point for friends, families, travelers, and lovers of good food who seek authenticity, affection, and tradition served with pride.</span></p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">
+      <span class="lang-es inline-content">Encuéntranos</span>
+      <span class="lang-en inline-content">Find Us</span>
+    </h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Jr. Francisco Moreno 388, Surquillo, Lima</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-phone"></i>
+          <span>+51 953 489 892</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>lapicanteriasurquillo@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-clock"></i>
+          <span class="lang-es inline-content">Mar-Dom: 12:00 PM - 5:00 PM</span>
+          <span class="lang-en inline-content">Tue-Sun: 12:00 PM - 5:00 PM</span>
+        </div>
+        <div class="social-links">
+          <a href="https://www.facebook.com/share/1HTYw9wM1Q/" target="_blank" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/lapicanteriasurquillo" target="_blank" class="social-icon">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/51953489892" target="_blank" class="social-icon">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d62414.91981038331!2d-77.074764!3d-12.1167718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c81045eb8aff%3A0x9cce78ba3005d3f2!2sLa%20Picanter%C3%ADa!5e0!3m2!1ses!2spe!4v1750265087532!5m2!1ses!2spe" 
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+        <div class="map-fallback" id="mapFallback" style="display: none;">
+          <i class="fas fa-map-marked-alt"></i>
+          <p><span class="lang-es inline-content">No se pudo cargar el mapa</span><span class="lang-en inline-content">Map could not be loaded</span></p>
+          <a href="https://maps.google.com/?q=La+Picanter%C3%ADa+Jr.+Francisco+Moreno+388+Surquillo+Lima" target="_blank">
+            <span class="lang-es inline-content">Abrir en Google Maps</span>
+            <span class="lang-en inline-content">Open in Google Maps</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="experience">
+    <h2 class="section-title">
+        <span class="lang-es">Cuéntanos tu Experiencia</span>
+        <span class="lang-en">Tell Us About Your Experience</span>
+    </h2>
+    
+    <div class="experience-section">
+      <p class="experience-intro">
+        <span class="lang-es">
+          Tu opinión es muy importante para nosotros. Comparte tu experiencia en La Picantería 
+          y ayúdanos a seguir mejorando para ofrecerte el mejor servicio y los más auténticos sabores del Perú.
+        </span>
+        <span class="lang-en">
+          Your opinion is very important to us. Share your experience at La Picantería 
+          and help us keep improving to offer you the best service and the most authentic flavors of Peru.
+        </span>
+      </p>
+      
+      <div class="review-form-container">
+        <form id="reviewForm" class="review-form">
+          <div class="form-group">
+            <label for="reviewName">
+              <span class="lang-es">Tu Nombre *</span>
+              <span class="lang-en">Your Name *</span>
+            </label>
+            <input type="text" id="reviewName" name="reviewName" required 
+                   placeholder="Ingresa tu nombre" 
+                   data-placeholder-es="Ingresa tu nombre"
+                   data-placeholder-en="Enter your name">
+          </div>
+          
+          <div class="form-group">
+            <label for="reviewRating">
+              <span class="lang-es">Calificación *</span>
+              <span class="lang-en">Rating *</span>
+            </label>
+            <div class="star-rating" id="starRating">
+              <i class="far fa-star" data-rating="1"></i>
+              <i class="far fa-star" data-rating="2"></i>
+              <i class="far fa-star" data-rating="3"></i>
+              <i class="far fa-star" data-rating="4"></i>
+              <i class="far fa-star" data-rating="5"></i>
+            </div>
+            <input type="hidden" id="reviewRating" name="reviewRating" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="reviewText">
+              <span class="lang-es">Tu Experiencia *</span>
+              <span class="lang-en">Your Experience *</span>
+            </label>
+
+            <textarea id="reviewText" name="reviewText" required rows="4"
+              placeholder="Cuéntanos sobre tu visita a La Picantería..."
+              data-placeholder-es="Cuéntanos sobre tu visita a La Picantería..."
+              data-placeholder-en="Tell us about your visit to La Picantería..."></textarea>
+          </div>
+          
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane"></i>
+            <span class="lang-es">Publicar Reseña</span>
+            <span class="lang-en">Submit Review</span>
+          </button>
+          
+          <div class="form-message" id="reviewFormMessage"></div>
+        </form>
+      </div>
+      
+      <div class="review-cards" id="reviewCards">
+        <div class="no-reviews">
+          <i class="fas fa-comments"></i>
+          <p class="lang-es">Aún no hay reseñas. ¡Sé el primero en compartir tu experiencia!</p>
+          <p class="lang-en">There are no reviews yet. Be the first to share your experience!</p>
+        </div>
+      </div>
+    </div>
+</section>
+<section id="careers">
+    <h2 class="section-title">
+        <span class="lang-es">Trabaja con Nosotros</span>
+        <span class="lang-en">Work With Us</span>
+    </h2>
+    
+    <div class="careers-section">
+      <p class="careers-intro">
+        <span class="lang-es">
+          Únete a la familia de La Picantería. Buscamos personas apasionadas por la gastronomía 
+          peruana y comprometidas con la excelencia en el servicio. Si quieres ser parte de nuestro equipo, 
+          ¡te estamos esperando!
+        </span>
+        <span class="lang-en">
+          Join the La Picantería family. We are looking for people passionate about Peruvian gastronomy 
+          and committed to excellent service. If you want to be part of our team, we are waiting for you!
+        </span>
+      </p>
+      
+      <div class="careers-form">
+        <form id="careersForm">
+          <div class="form-group">
+            <label for="name">
+              <span class="lang-es">Nombre Completo *</span>
+              <span class="lang-en">Full Name *</span>
+            </label>
+            <input type="text" id="name" name="name" required
+                   placeholder="Ingresa tu nombre completo"
+                   data-placeholder-es="Ingresa tu nombre completo"
+                   data-placeholder-en="Enter your full name">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">
+              <span class="lang-es">Correo Electrónico *</span>
+              <span class="lang-en">Email *</span>
+            </label>
+            <input type="email" id="email" name="email" required
+                   placeholder="tu@email.com"
+                   data-placeholder-es="tu@email.com"
+                   data-placeholder-en="your@email.com">
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">
+              <span class="lang-es">Teléfono *</span>
+              <span class="lang-en">Phone *</span>
+            </label>
+            <input type="tel" id="phone" name="phone" required 
+                   placeholder="+51 999 999 999"
+                   data-placeholder-es="+51 999 999 999"
+                   data-placeholder-en="+51 999 999 999">
+          </div>
+          
+          <div class="form-group">
+            <label for="position">
+              <span class="lang-es">Posición de Interés *</span>
+              <span class="lang-en">Position of Interest *</span>
+            </label>
+            <select id="position" name="position" required>
+              <option value="">
+                <span class="lang-es">Selecciona una posición</span>
+                <span class="lang-en">Select a position</span>
+              </option>
+              <option value="asesor-gastronomico">Asesor Gastronómico / Gastronomic Advisor</option>
+              <option value="barman">Barman / Bartender</option>
+              <option value="cocinero">Cocinero / Cook</option>
+              <option value="logistica">Logística / Logistics</option>
+              <option value="asistente-bar">Asistente de Bar / Bar Assistant</option>
+              <option value="almacen">Asistente de Logística / Warehouse Assistant</option>
+              <option value="gastronomico">Asistente Gastronómico / Gastronomic Assistant</option>
+              <option value="cocina">Asistente de Cocina / Kitchen Assistant</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="experience">
+              <span class="lang-es">Experiencia Previa</span>
+              <span class="lang-en">Previous Experience</span>
+            </label>
+            <textarea id="experience" name="experience"
+              placeholder="Cuéntanos sobre tu experiencia laboral..."
+              data-placeholder-es="Cuéntanos sobre tu experiencia laboral..."
+              data-placeholder-en="Tell us about your work experience..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">
+              <span class="lang-es">¿Por qué quieres trabajar con nosotros? *</span>
+              <span class="lang-en">Why do you want to work with us? *</span>
+            </label>
+            <textarea id="message" name="message" required
+              placeholder="Cuéntanos tu motivación..."
+              data-placeholder-es="Cuéntanos tu motivación..."
+              data-placeholder-en="Tell us your motivation..."></textarea>
+          </div>
+          
+          <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane"></i>
+            <span class="lang-es">Enviar Solicitud</span>
+            <span class="lang-en">Submit Application</span>
+          </button>
+          
+          <div class="form-message" id="formMessage"></div>
+        </form>
+      </div>
+    </div>
+</section>
+
+
+  <button id="whatsappFloatBtn" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </button>
+  <div id="whatsappChatModal" class="whatsapp-chat-modal">
+    <div class="chat-header">
+      <span>La Picantería</span>
+      <button class="chat-close">×</button>
+    </div>
+    <div class="chat-body">
+      <div class="message">
+        <span class="lang-es inline-content">¿Necesitas ayuda?<br>Contáctanos 👋</span>
+        <span class="lang-en inline-content">Need help?<br>Contact us 👋</span>
+      </div>
+    </div>
+    <div class="chat-footer">
+      <a href="https://api.whatsapp.com/send/?phone=51953489892&text=Hola%21+Me+gustar%C3%ADa+realizar+un+pedido.&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="chat-btn">
+        <span class="lang-es inline-content">Abrir chat</span>
+        <span class="lang-en inline-content">Open chat</span>
+        <i class="fas fa-paper-plane"></i>
+      </a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3><span class="lang-es inline-content">Información Legal</span><span class="lang-en inline-content">Legal Info</span></h3>
+        <p><strong>RUC:</strong> 20547577435</p>
+        <p><strong>Gourmet ASP SAC</strong></p>
+      </div>
+      <div class="footer-section">
+        <h3><span class="lang-es inline-content">Horarios</span><span class="lang-en inline-content">Schedule</span></h3>
+        <p><span class="lang-es inline-content">Martes a Domingo</span><span class="lang-en inline-content">Tuesday to Sunday</span></p>
+        <p>12:00 PM - 5:00 PM</p>
+      </div>
+      <div class="footer-section">
+        <h3><span class="lang-es inline-content">Contacto</span><span class="lang-en inline-content">Contact</span></h3>
+        <a href="tel:+51953489892">+51 953 489 892</a>
+        <a href="mailto:lapicanteriasurquillo@gmail.com">lapicanteriasurquillo@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p><span class="lang-es inline-content">© 2025 La Picantería - Gourmet ASP SAC. Todos los derechos reservados.</span><span class="lang-en inline-content">© 2025 La Picantería - Gourmet ASP SAC. All rights reserved.</span></p>
+    </div>
+  </footer>
+<script src="reviews.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+    
+      // === CERRAR BANNER Y MOSTRAR MENSAJE DE RESERVA ===
+      const bannerOverlay = document.getElementById('bannerOverlay');
+      const closeOverlay = document.getElementById('closeOverlay');
+      const reservationMessage = document.getElementById('reservationMessage');
+      
+      // Temporizador para cerrar automáticamente el banner después de 10 segundos
+      const autoCloseTimer = setTimeout(() => {
+        closeBannerOverlay();
+      }, 10000); // 10 segundos
+      
+      function closeBannerOverlay() {
+        if (bannerOverlay) {
+          bannerOverlay.classList.add('hidden');
+          document.body.classList.remove('banner-active');
+          clearTimeout(autoCloseTimer); // Cancelar el temporizador si se cierra manualmente
+          setTimeout(() => {
+            if (reservationMessage) {
+              reservationMessage.classList.add('show');
+              setTimeout(() => {
+                reservationMessage.classList.remove('show');
+              }, 5000);
+            }
+          }, 300);
+        }
+      }
+      
+      if (closeOverlay) closeOverlay.addEventListener('click', closeBannerOverlay);
+
+      // === SELECTOR DE IDIOMA ===
+      function setLanguage(lang) {
+        localStorage.setItem('preferredLang', lang);
+        document.documentElement.setAttribute('lang', lang);
+        document.body.className = document.body.className
+          .replace(/\blang-active-\w+\b/g, '')
+          .trim();
+        document.body.classList.add(`lang-active-${lang}`);
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          if (btn.dataset.lang === lang) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+
+      const savedLang = localStorage.getItem('preferredLang') || 'es';
+      setLanguage(savedLang);
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setLanguage(btn.dataset.lang);
+        });
+      });
+
+      // === MENÚ HAMBURGUESA (CORREGIDO) ===
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+      if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+          link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+          });
+        });
+      }
+
+      // === HEADER SCROLL ===
+      const header = document.querySelector('.modern-header');
+      window.addEventListener('scroll', () => {
+        if (header) header.classList.toggle('scrolled', window.scrollY > 100);
+      });
+
+      // === CARRUSEL PRINCIPAL ===
+      const carouselTrack = document.getElementById('carouselTrack');
+      const dotsContainer = document.getElementById('carouselDots');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const images = [
+        'img/cachanga01.jpeg', 'img/ceviche_clasico02.jpg', 'img/jaladito03.jpg', 'img/jalea_limeña04.jpeg', 'img/jalea_chiclayana05.jpg', 'img/al_ajo06.jpg', 'img/almejas01.jpg',
+        'img/chanque02.jpg', 'img/conchas_abanico03.jpg', 'img/conchas_bloody04.jpg', 'img/concha_pala05.png', 'img/pulpo08.jpeg', 'img/navajas06.jpg','img/ostras_parrilla07.jpg',  'img/langosta09.jpg', 'img/langostinos10.jpg', 
+         'img/cangrejo11.jpeg', 'img/parihuela01.jpg', 'img/sudado02.jpeg',  'img/cau_cau.jpeg', 'img/pato_pekin.jpg',
+        'img/costillar.jpeg', 'img/paletas.jpeg',
+      ];
+      let currentSlide = 0;
+      let autoSlideInterval;
+
+      // Limpiar en caso de recarga
+      carouselTrack.innerHTML = '';
+      dotsContainer.innerHTML = '';
+
+      images.forEach((img, index) => {
+        const item = document.createElement('div');
+        item.className = 'carousel-item';
+        item.innerHTML = `<img src="${img}" alt="Plato ${index + 1}" onerror="this.src='https://placehold.co/800x600/8B7355/FFFFFF?text=Dish+${index + 1}'">`;
+        carouselTrack.appendChild(item);
+        const dot = document.createElement('div');
+        dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+      });
+
+      function updateCarousel() {
+        const width = carouselTrack.offsetWidth;
+        carouselTrack.style.transform = `translateX(-${currentSlide * width}px)`;
+        document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+          dot.classList.toggle('active', index === currentSlide);
+        });
+      }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        updateCarousel();
+        resetAutoSlide();
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % images.length;
+        updateCarousel();
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + images.length) % images.length;
+        updateCarousel();
+      }
+
+      function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 4000);
+      }
+
+      function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoSlide(); });
+      if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoSlide(); });
+
+      const carouselContainer = document.querySelector('.carousel-container');
+      if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+        carouselContainer.addEventListener('mouseleave', startAutoSlide);
+      }
+
+      window.addEventListener('resize', updateCarousel);
+      startAutoSlide();
+      updateCarousel();
+
+      // === MODAL DEL CARRUSEL ===
+      const carouselModal = document.getElementById('carouselModal');
+      const carouselModalImg = document.getElementById('carouselModalImage');
+      const carouselModalClose = document.getElementById('carouselModalClose');
+      const modalPrevBtn = document.getElementById('modalPrevBtn');
+      const modalNextBtn = document.getElementById('modalNextBtn');
+      // ⚠️ Obtener imágenes DESPUÉS de crear el carrusel
+      const carouselImages = Array.from(document.querySelectorAll('.carousel-item img'));
+      let currentModalIndex = 0;
+
+      function openCarouselModal(index) {
+        if (index >= 0 && index < carouselImages.length) {
+          currentModalIndex = index;
+          carouselModalImg.src = carouselImages[index].src;
+          carouselModal.classList.add('show');
+        }
+      }
+
+      function goToModalPrev() {
+        currentModalIndex = (currentModalIndex - 1 + carouselImages.length) % carouselImages.length;
+        carouselModalImg.src = carouselImages[currentModalIndex].src;
+      }
+
+      function goToModalNext() {
+        currentModalIndex = (currentModalIndex + 1) % carouselImages.length;
+        carouselModalImg.src = carouselImages[currentModalIndex].src;
+      }
+
+      carouselImages.forEach((img, index) => {
+        img.addEventListener('click', () => openCarouselModal(index));
+      });
+
+      if (modalPrevBtn) modalPrevBtn.addEventListener('click', (e) => { e.stopPropagation(); goToModalPrev(); });
+      if (modalNextBtn) modalNextBtn.addEventListener('click', (e) => { e.stopPropagation(); goToModalNext(); });
+      if (carouselModalClose) carouselModalClose.addEventListener('click', () => carouselModal.classList.remove('show'));
+      if (carouselModal) {
+        carouselModal.addEventListener('click', (e) => {
+          if (e.target === carouselModal) carouselModal.classList.remove('show');
+        });
+        document.addEventListener('keydown', (e) => {
+          if (carouselModal.classList.contains('show')) {
+            if (e.key === 'ArrowLeft') goToModalPrev();
+            if (e.key === 'ArrowRight') goToModalNext();
+            if (e.key === 'Escape') carouselModal.classList.remove('show');
+          }
+        });
+      }
+
+      // === MODAL DE WHATSAPP ===
+      const whatsappBtn = document.getElementById('whatsappFloatBtn');
+      const chatModal = document.getElementById('whatsappChatModal');
+      const chatClose = document.querySelector('.chat-close');
+      if (whatsappBtn && chatModal && chatClose) {
+        whatsappBtn.addEventListener('click', () => chatModal.classList.add('show'));
+        chatClose.addEventListener('click', () => chatModal.classList.remove('show'));
+        chatModal.addEventListener('click', (e) => {
+          if (e.target === chatModal) chatModal.classList.remove('show');
+        });
+      }
+
+     // === CATÁLOGO MODAL ===
+const viewCatalogBtn = document.getElementById('viewCatalogBtn');
+const viewGalleryBtn = document.getElementById('viewGalleryBtn');
+const navCatalogBtn = document.getElementById('navCatalogBtn');
+const navVideoBtn = document.getElementById('navVideoBtn');
+
+// === MODAL DE VIDEO LOCAL ===
+const videoModal = document.getElementById('videoModal');
+const closeVideo = document.getElementById('closeVideo');
+const localVideo = document.getElementById('localVideo');
+
+function openCatalogModal(e) {
+  e.preventDefault();
+  closeBannerOverlay(); // Cierra el banner
+  
+  // Abre el PDF directamente en una nueva pestaña
+  window.open('Catálogo Navideño Picantería 2025.pdf', '_blank');
+}
+
+// === FUNCIONES PARA EL VIDEO ===
+function openVideoModal(e) {
+  e.preventDefault();
+  closeBannerOverlay(); // Cierra el banner
+  if (videoModal) {
+    videoModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    if (localVideo) {
+      localVideo.currentTime = 0;
+      localVideo.play();
+    }
+  }
+}
+
+function closeVideoModal() {
+  if (videoModal) {
+    videoModal.classList.remove('show');
+    if (localVideo) localVideo.pause();
+  }
+  document.body.style.overflow = 'auto';
+}
+
+// === EVENTOS ===
+if (viewCatalogBtn) viewCatalogBtn.addEventListener('click', openCatalogModal);
+if (viewGalleryBtn) viewGalleryBtn.addEventListener('click', openVideoModal);
+if (navCatalogBtn) navCatalogBtn.addEventListener('click', openCatalogModal);
+if (navVideoBtn) navVideoBtn.addEventListener('click', openVideoModal);
+if (closeVideo) closeVideo.addEventListener('click', closeVideoModal);
+
+// Cierra modal al hacer clic fuera del contenido
+if (videoModal) {
+  videoModal.addEventListener('click', (e) => {
+    if (e.target === videoModal) closeVideoModal();
+  });
+}
+
+// Cierra con tecla ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (videoModal && videoModal.classList.contains('show')) {
+      closeVideoModal();
+    } else if (bannerOverlay && !bannerOverlay.classList.contains('hidden')) {
+      closeBannerOverlay();
+    }
+  }
+});
+
+      // === ANCLAJE SUAVE ===
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            const header = document.querySelector('.modern-header');
+            const headerHeight = header ? header.offsetHeight : 0;
+            const y = target.offsetTop - headerHeight - 20;
+            window.scrollTo({ top: y > 0 ? y : 0, behavior: 'smooth' });
+          }
+        });
+      });
+      
+      // === MANEJO DE ERRORES DEL MAPA ===
+      const mapIframe = document.querySelector('.map-container iframe');
+      const mapFallback = document.getElementById('mapFallback');
+      
+      // Verificar si el iframe se cargó correctamente
+      if (mapIframe) {
+        mapIframe.addEventListener('error', function() {
+          if (mapFallback) {
+            mapFallback.style.display = 'flex';
+            mapIframe.style.display = 'none';
+          }
+        });
+        
+        // También verificamos después de un tiempo por si el iframe no muestra error pero no carga
+        setTimeout(() => {
+          try {
+            // Intentamos acceder al contenido del iframe
+            const iframeContent = mapIframe.contentWindow || mapIframe.contentDocument;
+            if (!iframeContent) {
+              throw new Error('No se pudo acceder al contenido del iframe');
+            }
+          } catch (e) {
+            // Si hay un error al acceder al contenido, mostramos el fallback
+            if (mapFallback) {
+              mapFallback.style.display = 'flex';
+              mapIframe.style.display = 'none';
+            }
+          }
+        }, 5000);
+      }
+    });
+    // === BOTONES DE "REGRESAR A LA PÁGINA" (No implementados en este HTML, pero mantenemos la lógica) ===
+const backFromCatalog = document.getElementById('backFromCatalog');
+const backFromVideo = document.getElementById('backFromVideo');
+
+if (backFromCatalog) {
+  backFromCatalog.addEventListener('click', () => {
+    closeCatalogModal();
+    document.body.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
+if (backFromVideo) {
+  backFromVideo.addEventListener('click', () => {
+    closeVideoModal();
+    document.body.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+// === SISTEMA DE RESEÑAS ===
+    let reviews = JSON.parse(localStorage.getItem('picanteriaReviews')) || [];
+    let selectedRating = 0;
+    
+    // Manejo de estrellas
+    const stars = document.querySelectorAll('.star-rating i');
+    const ratingInput = document.getElementById('reviewRating');
+    
+    stars.forEach(star => {
+      star.addEventListener('click', function() {
+        selectedRating = parseInt(this.dataset.rating);
+        ratingInput.value = selectedRating;
+        updateStars(selectedRating);
+      });
+      
+      star.addEventListener('mouseenter', function() {
+        const rating = parseInt(this.dataset.rating);
+        updateStars(rating);
+      });
+    });
+    
+    document.querySelector('.star-rating').addEventListener('mouseleave', function() {
+      updateStars(selectedRating);
+    });
+    
+    function updateStars(rating) {
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.remove('far');
+          star.classList.add('fas');
+        } else {
+          star.classList.remove('fas');
+          star.classList.add('far');
+        }
+      });
+    }
+    
+    // Cargar reseñas al inicio
+    function loadReviews() {
+      const reviewCards = document.getElementById('reviewCards');
+      
+      if (reviews.length === 0) {
+        reviewCards.innerHTML = `
+          <div class="no-reviews">
+            <i class="fas fa-comments"></i>
+            <p>Aún no hay reseñas. ¡Sé el primero en compartir tu experiencia!</p>
+          </div>
+        `;
+        return;
+      }
+      
+      reviewCards.innerHTML = reviews.map((review, index) => `
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="review-info">
+              <h4>${review.name}</h4>
+              <div class="review-stars">
+                ${generateStars(review.rating)}
+              </div>
+            </div>
+          </div>
+          <p class="review-text">"${review.text}"</p>
+          <div class="review-platform">
+            <i class="fas fa-calendar"></i>
+            <span>${review.date}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function generateStars(rating) {
+      let stars = '';
+      for (let i = 0; i < rating; i++) {
+        stars += '<i class="fas fa-star"></i>';
+      }
+      return stars;
+    }
+    
+    // Manejo del formulario de reseñas
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewFormMessage = document.getElementById('reviewFormMessage');
+    
+    reviewForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (selectedRating === 0) {
+        reviewFormMessage.className = 'form-message error';
+        reviewFormMessage.textContent = 'Por favor selecciona una calificación';
+        reviewFormMessage.style.display = 'block';
+        setTimeout(() => {
+          reviewFormMessage.style.display = 'none';
+        }, 3000);
+        return;
+      }
+      
+      const newReview = {
+        name: document.getElementById('reviewName').value,
+        rating: selectedRating,
+        text: document.getElementById('reviewText').value,
+        date: new Date().toLocaleDateString('es-PE')
+      };
+      
+      reviews.unshift(newReview);
+      localStorage.setItem('picanteriaReviews', JSON.stringify(reviews));
+      
+      reviewFormMessage.className = 'form-message success';
+      reviewFormMessage.textContent = '¡Gracias por tu reseña! Ha sido publicada exitosamente.';
+      reviewFormMessage.style.display = 'block';
+      
+      reviewForm.reset();
+      selectedRating = 0;
+      updateStars(0);
+      loadReviews();
+      
+      setTimeout(() => {
+        reviewFormMessage.style.display = 'none';
+      }, 5000);
+    });
+    
+    // Cargar reseñas al cargar la página
+    loadReviews();
+    
+    // === SISTEMA DE FORMULARIO DE TRABAJO ===
+    const careersForm = document.getElementById('careersForm');
+    const formMessage = document.getElementById('formMessage');
+    
+    careersForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = this.querySelector('.btn-submit');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+      
+      // Obtener datos del formulario
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        position: document.getElementById('position').value,
+        experience: document.getElementById('experience').value,
+        message: document.getElementById('message').value
+      };
+      
+      // Obtener el texto de la posición seleccionada
+      const positionSelect = document.getElementById('position');
+      const positionText = positionSelect.options[positionSelect.selectedIndex].text;
+      
+      // Simular envío
+      setTimeout(() => {
+        // Crear mensaje de WhatsApp con los datos
+        const whatsappMessage = `*NUEVA SOLICITUD DE EMPLEO*%0A%0A` +
+          `*Nombre:* ${formData.name}%0A` +
+          `*Email:* ${formData.email}%0A` +
+          `*Teléfono:* ${formData.phone}%0A` +
+          `*Posición:* ${positionText}%0A` +
+          `*Experiencia:* ${formData.experience}%0A` +
+          `*Motivación:* ${formData.message}`;
+        
+        // Redirigir a WhatsApp
+        window.open(`https://api.whatsapp.com/send/?phone=51953489892&text=${whatsappMessage}`, '_blank');
+        
+        // Mostrar mensaje de éxito
+        formMessage.className = 'form-message success';
+        formMessage.textContent = '¡Gracias! Tu solicitud ha sido enviada. Nos pondremos en contacto contigo pronto.';
+        formMessage.style.display = 'block';
+        
+        // Resetear formulario
+        careersForm.reset();
+        
+        // Restaurar botón
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Solicitud';
+        
+        // Ocultar mensaje después de 5 segundos
+        setTimeout(() => {
+          formMessage.style.display = 'none';
+        }, 5000);
+        
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
